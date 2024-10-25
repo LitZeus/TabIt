@@ -3,35 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TabIt - Save Your Tabs</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS if needed -->
+    <title>TabIt</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
+    <header>
         <h1>TabIt</h1>
-        <div class="add-group">
-            <input type="text" id="groupName" placeholder="Enter group name" />
-            <button id="saveTabsButton">Save Tabs</button>
-            <button id="addCurrentTabButton">Add Current Tab</button>
-            <button id="addAllTabsButton">Add All Tabs</button>
-            <button id="showTabsButton">Show Current Tabs</button>
-        </div>
-        <div id="groupList"></div>
+    </header>
+    <div class="add-group">
+        <input type="text" id="groupName" placeholder="Group Name" />
+        <button id="saveTabsButton" title="Save Tabs">
+            <img src="/assets/icons/save-icon.png" alt="Save" class="icon" />
+        </button>
+        <button id="addCurrentTabButton" title="Add Current Tab">Add Current Tab</button>
+        <button id="addAllTabsButton" title="Add All Tabs">Add All Tabs</button>
+        <button id="showTabsButton" title="Show Current Tabs">Show Current Tabs</button>
+    </div>
+    <div class="group-section">
+        <div id="groupList" class="group-list"></div>
     </div>
 
-    <!-- Modal for deletion confirmation -->
-    <div id="modal" class="hidden">
-        <div class="modal-content">
-            <p>Are you sure you want to delete this group?</p>
-            <button id="confirmDelete">Delete</button>
-            <button id="cancelDelete">Cancel</button>
-        </div>
-    </div>
-
-    <!-- Popup for showing current tabs -->
     <div id="tabsPopup" class="hidden">
         <div class="tabs-content"></div>
         <button id="closeTabsPopup">Close</button>
+    </div>
+
+    <div id="modal" class="modal hidden">
+        <div class="modal-content">
+            <p>Are you sure you want to delete this group?</p>
+            <button id="confirmDelete">Yes</button>
+            <button id="cancelDelete">No</button>
+        </div>
     </div>
 
     <script src="popup.js"></script>
