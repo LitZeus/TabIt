@@ -1,6 +1,6 @@
 {
     "manifest_version": 3,
-    "name": "Tab Group Manager",
+    "name": "TabIt",
     "version": "1.0",
     "description": "Save and organize open tabs into groups.",
     "permissions": ["tabs", "storage"],

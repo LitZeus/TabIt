@@ -1,14 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Tab Group Manager</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <title>Tab Group Manager</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Tab Groups</h1>
-    <div id="groupList"></div>
-    <input type="text" id="groupName" placeholder="New Group Name">
-    <button id="saveTabsButton">Save Current Tabs</button>
+  <header>
+    <h1>Manage Your Tab Groups</h1>
+  </header>
+  
+  <section class="group-section">
+    <div id="groupList" class="group-list"></div>
+  </section>
+
+  <section class="add-group">
+    <input type="text" id="groupName" placeholder="Enter Group Name" aria-label="Group Name">
+    <button id="saveTabsButton">Save Tabs</button>
+  </section>
+
+  <!-- Confirmation Modal for Deletion -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <p>Are you sure you want to delete this group?</p>
+      <button id="confirmDelete">Delete</button>
+      <button id="cancelDelete">Cancel</button>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
 </body>
-<script src="popup.js"></script>
 </html>

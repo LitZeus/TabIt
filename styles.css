@@ -1,40 +1,120 @@
 body {
     font-family: Arial, sans-serif;
-    padding: 10px;
-    width: 250px;
-}
-
-h1 {
-    font-size: 1.2em;
+    width: 300px;
+    padding: 20px;
+    color: #333;
+  }
+  
+  header h1 {
+    font-size: 1.4em;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  
+  .group-section, .add-group {
     margin-bottom: 10px;
-}
-
-.group {
+  }
+  
+  .group-list {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f9f9f9;
     margin: 5px 0;
     padding: 10px;
+    border-radius: 5px;
+    transition: background 0.2s;
+  }
+  
+  .group:hover {
+    background-color: #e9e9e9;
+  }
+  
+  .open-btn, .delete-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #007bff;
+    font-size: 0.9em;
+  }
+  
+  .open-btn:hover {
+    color: #0056b3;
+  }
+  
+  .delete-btn:hover {
+    color: #d9534f;
+  }
+  
+  .add-group input {
+    width: 60%;
+    padding: 8px;
+    margin-right: 5px;
     border: 1px solid #ddd;
     border-radius: 5px;
-    cursor: pointer;
-}
-
-.group:hover {
-    background-color: #f0f0f0;
-}
-
-.group-title {
-    font-weight: bold;
-}
-
-button {
-    margin-top: 10px;
-    padding: 8px 12px;
-    background-color: #007bff;
+  }
+  
+  .add-group button {
+    padding: 8px;
+    background-color: #28a745;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
+  }
+  
+  .add-group button:hover {
+    background-color: #218838;
+  }
+  
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .modal-content button {
+    margin-top: 10px;
+    padding: 8px 12px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  #confirmDelete {
+    background-color: #d9534f;
+    color: white;
+  }
+  
+  #confirmDelete:hover {
+    background-color: #c9302c;
+  }
+  
+  #cancelDelete {
+    background-color: #5bc0de;
+    color: white;
+  }
+  
+  #cancelDelete:hover {
+    background-color: #31b0d5;
+  }
+  
