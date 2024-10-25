@@ -2,12 +2,27 @@ const groupList = document.getElementById('groupList');
 const saveTabsButton = document.getElementById('saveTabsButton');
 const groupNameInput = document.getElementById('groupName');
 const modal = document.getElementById('modal');
+const confirmDelete = document.getElementById('confirmDelete');
+const cancelDelete = document.getElementById('cancelDelete');
 let groupToDelete = null;
 
-// Load groups on open
-document.addEventListener('DOMContentLoaded', loadGroups);
+// Load groups and display welcome message on popup open
+document.addEventListener('DOMContentLoaded', () => {
+  loadGroups();
+  showWelcomeMessage();
+});
 
 saveTabsButton.addEventListener('click', saveTabs);
+confirmDelete.addEventListener('click', deleteGroup);
+cancelDelete.addEventListener('click', () => closeModal());
+
+// Function to display welcome message
+function showWelcomeMessage() {
+  const welcomeMessage = document.createElement('div');
+  welcomeMessage.className = 'welcome-message';
+  welcomeMessage.textContent = 'Welcome to TabIt! Save and manage your tab groups easily.';
+  groupList.appendChild(welcomeMessage);
+}
 
 // Function to load and display groups
 function loadGroups() {
@@ -20,6 +35,13 @@ function loadGroups() {
 // Display tab groups in list
 function displayGroups(tabGroups) {
   groupList.innerHTML = ''; // Clear list
+
+  // Display a message if no groups are saved
+  if (Object.keys(tabGroups).length === 0) {
+    showWelcomeMessage();
+    return;
+  }
+
   Object.keys(tabGroups).forEach(groupName => {
     const groupDiv = document.createElement('div');
     groupDiv.className = 'group';
@@ -66,20 +88,19 @@ function showModal(groupName) {
 }
 
 // Close modal without deleting
-document.getElementById('cancelDelete').addEventListener('click', () => {
+function closeModal() {
   modal.classList.add('hidden');
   groupToDelete = null;
-});
+}
 
 // Confirm and delete group
-document.getElementById('confirmDelete').addEventListener('click', () => {
+function deleteGroup() {
   if (groupToDelete) {
     chrome.storage.local.get(['tabGroups'], (result) => {
       const tabGroups = result.tabGroups || {};
       delete tabGroups[groupToDelete];
       chrome.storage.local.set({ tabGroups }, loadGroups);
-      modal.classList.add('hidden');
-      groupToDelete = null;
+      closeModal();
     });
   }
-});
+}
