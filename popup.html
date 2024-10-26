@@ -10,8 +10,12 @@
     <header>
         <h1>TabIt</h1>
     </header>
+
+    <!-- Container for group name input and error message -->
     <div class="add-group">
-        <input type="text" id="groupName" placeholder="Group Name" />
+        <div id="groupNameContainer">
+            <input type="text" id="groupName" placeholder="Group Name" />
+        </div>
         <button id="saveTabsButton" title="Save Tabs">
             <img src="/assets/icons/save-icon.png" alt="Save" class="icon" />
         </button>
@@ -19,6 +23,7 @@
         <button id="addAllTabsButton" title="Add All Tabs">Add All Tabs</button>
         <button id="showTabsButton" title="Show Current Tabs">Show Current Tabs</button>
     </div>
+
     <div class="group-section">
         <div id="groupList" class="group-list"></div>
     </div>

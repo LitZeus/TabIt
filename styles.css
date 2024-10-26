@@ -1,3 +1,4 @@
+/* Global Styles */
 body {
   font-family: Arial, sans-serif;
   background-color: #f0f4f8; /* Light background color */
@@ -8,6 +9,7 @@ body {
   border-radius: 10px; /* Rounded edges for the popup */
 }
 
+/* Header Styling */
 header h1 {
   font-size: 1.6em;
   text-align: center;
@@ -15,10 +17,12 @@ header h1 {
   color: #007bff; /* Stylish color for the title */
 }
 
+/* Section Styling */
 .group-section, .add-group {
   margin-bottom: 15px; /* Increased margin for better spacing */
 }
 
+/* Group List Styling */
 .group-list {
   display: flex;
   flex-direction: column;
@@ -39,8 +43,9 @@ header h1 {
   background-color: #e9e9e9;
 }
 
+/* Button Styling */
 .open-btn, .delete-btn, .add-group button {
-  padding: 8px 12px; /* Add padding to buttons */
+  padding: 8px 12px;
   border-radius: 5px;
   border: none;
   cursor: pointer;
@@ -61,6 +66,7 @@ header h1 {
   background-color: #c82333; /* Darker red on hover */
 }
 
+/* Add Group Input Styling */
 .add-group input {
   width: 60%;
   padding: 8px;
@@ -80,6 +86,24 @@ header h1 {
 
 .add-group button:hover {
   background-color: #357ab8; /* Darker blue on hover */
+}
+
+/* Modal Styling */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal.hidden {
+  display: none;
 }
 
 .modal-content {
@@ -116,10 +140,12 @@ header h1 {
   background-color: #31b0d5; /* Darker blue on hover */
 }
 
+/* Hidden Class */
 .hidden {
   display: none; /* Hide elements with this class */
 }
 
+/* Welcome Message Styling */
 .welcome-message {
   text-align: center;
   font-size: 1.2em;
@@ -127,6 +153,7 @@ header h1 {
   margin: 15px 0; /* Margin around welcome message */
 }
 
+/* Tabs Content Popup Styling */
 .tabs-content {
   background-color: #fff; /* White background for popup */
   margin: 15% auto; /* 15% from the top and centered */
@@ -137,6 +164,7 @@ header h1 {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* Window and Tab Styling */
 .window {
   margin: 10px 0;
 }
@@ -152,23 +180,30 @@ header h1 {
   background-color: #f0f0f0; /* Light grey background on hover */
 }
 
+/* Popup and Modal Base Styling */
 #tabsPopup, .modal {
   display: none; /* Hidden by default */
   position: fixed;
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  z-index: 10; /* Ensure popups are on top */
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%; /* Adjustable for responsive design */
+  max-width: 500px; /* Set a max width */
+  height: auto; /* Allow modal to adjust to content */
+  background-color: #fff; /* Light background */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add subtle shadow */
+  border-radius: 12px; /* Rounded corners */
+  padding: 20px; /* Add inner padding */
+  overflow: hidden; /* Hide overflow */
+  background-color: rgba(0, 0, 0, 0.4); /* Dark background */
 }
 
 #tabsPopup.hidden {
   display: none; /* Ensure it's hidden when this class is added */
 }
 
-/* New Styles for Input Popup */
+/* Input Popup Styling */
 .input-popup {
   display: flex;
   flex-direction: column;
@@ -198,9 +233,14 @@ header h1 {
   background-color: #0056b3; /* Darker blue on hover */
 }
 
-/* Error Message Style */
+/* Error Message Styling */
 .error-message {
   color: #dc3545; /* Red color for error messages */
+  font-weight: bold;
   margin-top: 10px; /* Space above error message */
-  text-align: center; /* Centered error message */
+  padding: 8px;
+  text-align: center;
+  background-color: #f8d7da; /* Light red background for visibility */
+  border: 1px solid #dc3545; /* Red border */
+  border-radius: 8px;
 }
