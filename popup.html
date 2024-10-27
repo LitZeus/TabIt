@@ -15,6 +15,7 @@
     <div class="add-group">
         <div id="groupNameContainer">
             <input type="text" id="groupName" placeholder="Group Name" />
+            <!-- Error message will be added dynamically by ErrorMessage.js component -->
         </div>
         <button id="saveTabsButton" title="Save Tabs">
             <img src="/assets/icons/save-icon.png" alt="Save" class="icon" />
@@ -24,15 +25,18 @@
         <button id="showTabsButton" title="Show Current Tabs">Show Current Tabs</button>
     </div>
 
+    <!-- Group section where saved tab groups are displayed -->
     <div class="group-section">
         <div id="groupList" class="group-list"></div>
     </div>
 
+    <!-- Popup for displaying current tabs in open windows -->
     <div id="tabsPopup" class="hidden">
         <div class="tabs-content"></div>
         <button id="closeTabsPopup">Close</button>
     </div>
 
+    <!-- Modal for delete confirmation -->
     <div id="modal" class="modal hidden">
         <div class="modal-content">
             <p>Are you sure you want to delete this group?</p>
@@ -41,6 +45,17 @@
         </div>
     </div>
 
-    <script src="popup.js"></script>
+    <!-- Include all JavaScript component and service files -->
+    <script src="src/components/GroupNameInput.js" type="module"></script>
+    <script src="src/components/GroupList.js" type="module"></script>
+    <script src="src/components/TabsPopup.js" type="module"></script>
+    <script src="src/components/Modal.js" type="module"></script>
+    <script src="src/components/ErrorMessage.js" type="module"></script>
+    <script src="src/services/StorageManager.js" type="module"></script>
+    <script src="src/services/TabManager.js" type="module"></script>
+    <script src="src/utils/assignDefaultGroupName.js" type="module"></script>
+    
+    <!-- Main application file tying everything together -->
+    <script src="src/main.js" type="module"></script>
 </body>
 </html>

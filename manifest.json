@@ -1,14 +1,20 @@
 {
     "manifest_version": 3,
     "name": "TabIt",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "Save and organize open tabs into groups.",
     "permissions": ["tabs", "storage"],
     "action": {
         "default_popup": "popup.html",
-        "default_icon": "/assets//icons/tabit-icon.png"
+        "default_icon": "/assets/icons/tabit-icon.png"
     },
     "background": {
-        "service_worker": "background.js"
-    }
+        "service_worker": "src/background.js"
+    },
+    "icons": {
+        "16": "/assets/icons/tabit-icon-16.png",
+        "48": "/assets/icons/tabit-icon-48.png",
+        "128": "/assets/icons/tabit-icon-128.png"
+    },
+    "host_permissions": ["<all_urls>"]
 }
