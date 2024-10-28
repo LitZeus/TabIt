@@ -13,26 +13,26 @@ document.addEventListener("DOMContentLoaded", () => {
     const confirmDeleteButton = document.getElementById("confirmDelete");
     const closeTabsPopupButton = document.getElementById("closeTabsPopup");
 
-    // Load groups initially
-    loadGroups();
+    loadGroups(); // Load groups initially
 
-    // Add event listeners for the buttons
+    // Add event listeners for main buttons
     saveTabsButton.addEventListener("click", saveTabs);
     addCurrentTabButton.addEventListener("click", addCurrentTab);
     addAllTabsButton.addEventListener("click", addAllTabs);
     showTabsButton.addEventListener("click", showCurrentTabs);
     confirmDeleteButton.addEventListener("click", confirmDelete);
     cancelDeleteButton.addEventListener("click", closeModal);
-
+    
+    // Close the tabs popup
     closeTabsPopupButton.addEventListener("click", () => {
         document.getElementById("tabsPopup").classList.add("hidden");
     });
 
-    // Attach delete functionality to dynamically loaded groups
+    // Delegate click events for delete buttons within the group list
     document.getElementById("groupList").addEventListener("click", (e) => {
         if (e.target.classList.contains("delete-btn")) {
             const groupName = e.target.getAttribute("data-group-name");
-            showModal(groupName);
+            showModal(groupName); // Show the modal with the group name to delete
         }
     });
 });

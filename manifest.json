@@ -6,9 +6,9 @@
     "permissions": ["tabs", "storage"],
     "action": {
         "default_popup": "popup.html",
-        "default_icon": "/assets/icons/tabit-icon.png"
+        "default_icon": "assets/icons/tabit-icon.png"
     },
     "background": {
-        "service_worker": "background.js"
+        "service_worker": "src/background.js"
     }
 }

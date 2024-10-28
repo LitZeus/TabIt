@@ -5,7 +5,7 @@ export function showModal(groupName) {
     const modal = document.getElementById("modal");
     if (modal) {
         modal.classList.remove("hidden"); // Show modal
-        groupToDelete = groupName;
+        groupToDelete = groupName; // Set the group to delete
     }
 }
 
@@ -14,7 +14,7 @@ export function closeModal() {
     const modal = document.getElementById("modal");
     if (modal) {
         modal.classList.add("hidden"); // Hide modal
-        groupToDelete = null;
+        groupToDelete = null; // Clear the group to delete
     }
 }
 
@@ -23,11 +23,10 @@ export function confirmDelete() {
     if (groupToDelete) {
         chrome.storage.local.get(["tabGroups"], (result) => {
             const tabGroups = result.tabGroups || {};
-            delete tabGroups[groupToDelete];
+            delete tabGroups[groupToDelete]; // Delete the group
             chrome.storage.local.set({ tabGroups }, () => {
-                closeModal();
-                // Reload groups after deletion
-                loadGroups();
+                loadGroups(); // Reload groups after deletion
+                closeModal(); // Hide modal
             });
         });
     }
