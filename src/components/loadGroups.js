@@ -1,14 +1,16 @@
-export async function loadGroups() {
-    const groupList = document.getElementById("groupList");
-    const result = await chrome.storage.local.get(["tabGroups"]);
-    const tabGroups = result.tabGroups || {};
+export function loadGroups() {
+    chrome.storage.local.get(["tabGroups"], (result) => {
+        const tabGroups = result.tabGroups || {};
+        displayGroups(tabGroups);
+    });
+}
 
-    groupList.innerHTML = "";
+function displayGroups(tabGroups) {
+    groupList.innerHTML = ""; // Clear list
     if (Object.keys(tabGroups).length === 0) {
         groupList.innerHTML = '<div class="welcome-message">Welcome to TabIt! Save and manage your tab groups easily.</div>';
         return;
     }
-
     Object.keys(tabGroups).forEach((groupName) => {
         const groupDiv = document.createElement("div");
         groupDiv.className = "group";
@@ -17,6 +19,7 @@ export async function loadGroups() {
             <button class="open-btn">Open</button>
             <button class="delete-btn" data-group-name="${groupName}">Delete</button>
         `;
+        groupDiv.querySelector(".open-btn").addEventListener("click", () => openGroupTabs(tabGroups[groupName]));
         groupList.appendChild(groupDiv);
     });
 }
