@@ -17,9 +17,10 @@ function displayGroups(tabGroups) {
         groupDiv.innerHTML = `
             <span>${groupName} - ${tabGroups[groupName].length} Tabs</span>
             <button class="open-btn">Open</button>
-            <button class="delete-btn" data-group-name="${groupName}">Delete</button>
+            <button class="delete-btn">Delete</button>
         `;
         groupDiv.querySelector(".open-btn").addEventListener("click", () => openGroupTabs(tabGroups[groupName]));
+        groupDiv.querySelector(".delete-btn").addEventListener("click", () => showModal(groupName)); // Show the modal
         groupList.appendChild(groupDiv);
     });
 }

@@ -20,13 +20,17 @@ document.addEventListener("DOMContentLoaded", () => {
     addCurrentTabButton.addEventListener("click", addCurrentTab);
     addAllTabsButton.addEventListener("click", addAllTabs);
     showTabsButton.addEventListener("click", showCurrentTabs);
-    confirmDeleteButton.addEventListener("click", confirmDelete);
+
+    // Close the modal when "No" is clicked
     cancelDeleteButton.addEventListener("click", closeModal);
     
     // Close the tabs popup
     closeTabsPopupButton.addEventListener("click", () => {
         document.getElementById("tabsPopup").classList.add("hidden");
     });
+
+    // Handle the confirmation of deletion
+    confirmDeleteButton.addEventListener("click", confirmDelete);
 
     // Delegate click events for delete buttons within the group list
     document.getElementById("groupList").addEventListener("click", (e) => {
