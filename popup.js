@@ -13,6 +13,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const cancelDeleteButton = document.getElementById("cancelDelete");
     const closeTabsPopupButton = document.getElementById("closeTabsPopup");
 
+    // Ensure modal is hidden on load
+    document.getElementById("modal").classList.add("hidden");
+
     loadGroups();
 
     saveTabsButton.addEventListener("click", saveTabs);
