@@ -1,42 +1,44 @@
-import { addAllTabs, addCurrentTab } from "./components/addTab.js";
-import { closeModal, confirmDelete, showModal } from "./components/deleteGroup.js";
+import { deleteGroup, openGroup, showTabsInGroup } from "./components/groupActions.js";
 import { loadGroups } from "./components/loadGroups.js";
-import { saveTabs } from "./components/saveTabs.js";
-import { showCurrentTabs } from "./components/showTabs.js";
+import { addAllTabs, saveTabs } from "./components/saveTabs.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     const saveTabsButton = document.getElementById("saveTabsButton");
-    const addCurrentTabButton = document.getElementById("addCurrentTabButton");
     const addAllTabsButton = document.getElementById("addAllTabsButton");
-    const showTabsButton = document.getElementById("showTabsButton");
-    const cancelDeleteButton = document.getElementById("cancelDelete");
-    const confirmDeleteButton = document.getElementById("confirmDelete");
     const closeTabsPopupButton = document.getElementById("closeTabsPopup");
 
-    loadGroups(); // Load groups initially
+    // Load groups when the DOM content is loaded
+    loadGroups();
 
-    // Add event listeners for main buttons
-    saveTabsButton.addEventListener("click", saveTabs);
-    addCurrentTabButton.addEventListener("click", addCurrentTab);
-    addAllTabsButton.addEventListener("click", addAllTabs);
-    showTabsButton.addEventListener("click", showCurrentTabs);
+    // Add event listeners for the main action buttons
+    saveTabsButton.addEventListener("click", () => {
+        console.log("Save Current Tab button clicked");
+        saveTabs();
+    });
 
-    // Close the modal when "No" is clicked
-    cancelDeleteButton.addEventListener("click", closeModal);
-    
-    // Close the tabs popup
+    addAllTabsButton.addEventListener("click", () => {
+        console.log("Add All Tabs to Group button clicked");
+        addAllTabs();
+    });
+
     closeTabsPopupButton.addEventListener("click", () => {
+        console.log("Closing tabs popup");
         document.getElementById("tabsPopup").classList.add("hidden");
     });
 
-    // Handle the confirmation of deletion
-    confirmDeleteButton.addEventListener("click", confirmDelete);
-
-    // Delegate click events for delete buttons within the group list
+    // Delegate click events for group actions within the group list
     document.getElementById("groupList").addEventListener("click", (e) => {
-        if (e.target.classList.contains("delete-btn")) {
-            const groupName = e.target.getAttribute("data-group-name");
-            showModal(groupName); // Show the modal with the group name to delete
+        const groupName = e.target.getAttribute("data-group-name");
+
+        if (e.target.classList.contains("open-group")) {
+            console.log(`Opening group: ${groupName}`);
+            openGroup(groupName);
+        } else if (e.target.classList.contains("delete-group")) {
+            console.log(`Deleting group: ${groupName}`);
+            deleteGroup(groupName);
+        } else if (e.target.classList.contains("show-tabs")) {
+            console.log(`Showing tabs for group: ${groupName}`);
+            showTabsInGroup(groupName);
         }
     });
 });
