@@ -1,9 +1,8 @@
 export function loadGroups() {
-    console.log("Loading groups...");
     chrome.storage.local.get(["tabGroups"], (result) => {
         const tabGroups = result.tabGroups || {};
         const groupList = document.getElementById("groupList");
-        groupList.innerHTML = ""; // Clear existing groups
+        groupList.innerHTML = "";
 
         Object.keys(tabGroups).forEach(groupName => {
             const groupDiv = document.createElement("div");
@@ -16,7 +15,5 @@ export function loadGroups() {
             `;
             groupList.appendChild(groupDiv);
         });
-
-        console.log("Groups loaded:", Object.keys(tabGroups));
     });
 }

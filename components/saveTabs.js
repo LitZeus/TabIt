@@ -1,7 +1,7 @@
-export function saveTabs() {
-    const groupName = document.getElementById("groupName").value.trim() || assignDefaultGroupName();
-    console.log(`Saving current tab to group: ${groupName}`);
+import { loadGroups } from "./loadGroups.js";
 
+export function saveCurrentTab() {
+    const groupName = document.getElementById("groupName").value.trim() || assignDefaultGroupName();
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         const [currentTab] = tabs;
         if (!currentTab) {
@@ -15,17 +15,15 @@ export function saveTabs() {
             tabGroups[groupName].push({ title: currentTab.title, url: currentTab.url });
 
             chrome.storage.local.set({ tabGroups }, () => {
-                console.log(`Tab saved to group ${groupName}`);
+                console.log(`Tab saved to group: ${groupName}`);
                 loadGroups();
             });
         });
     });
 }
 
-export function addAllTabs() {
+export function saveAllTabs() {
     const groupName = document.getElementById("groupName").value.trim() || assignDefaultGroupName();
-    console.log(`Saving all tabs to group: ${groupName}`);
-
     chrome.tabs.query({}, (tabs) => {
         const tabInfo = tabs.map((tab) => ({ title: tab.title, url: tab.url }));
 
@@ -34,7 +32,7 @@ export function addAllTabs() {
             tabGroups[groupName] = tabInfo;
 
             chrome.storage.local.set({ tabGroups }, () => {
-                console.log(`All tabs saved to group ${groupName}`);
+                console.log(`All tabs saved to group: ${groupName}`);
                 loadGroups();
             });
         });
