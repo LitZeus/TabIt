@@ -30,14 +30,14 @@
         </div>
     </div>
 
-    <!-- Add delete confirmation template -->
-    <template id="deleteConfirmationTemplate">
-        <div class="delete-confirmation">
+    <!-- Overlay for delete confirmation -->
+    <div id="deleteConfirmationOverlay" class="overlay hidden">
+        <div class="confirmation-box">
             <p>Are you sure you want to delete this group?</p>
-            <button class="confirm-delete">Yes</button>
-            <button class="cancel-delete">No</button>
+            <button id="confirmDeleteButton">Yes</button>
+            <button id="cancelDeleteButton">No</button>
         </div>
-    </template>
+    </div>
 
     <script src="popup.js" type="module"></script>
 </body>

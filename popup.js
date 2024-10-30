@@ -7,6 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const saveTabsButton = document.getElementById("saveTabsButton");
     const addAllTabsButton = document.getElementById("addAllTabsButton");
     const closeTabsPopupButton = document.getElementById("closeTabsPopup");
+    const confirmDeleteButton = document.getElementById("confirmDeleteButton");
+    const cancelDeleteButton = document.getElementById("cancelDeleteButton");
 
     // Load saved groups when the popup is opened
     loadGroups();
@@ -35,14 +37,14 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Event delegation for handling confirmation and cancellation of delete actions
-    document.getElementById("groupList").addEventListener("click", (e) => {
-        const groupName = e.target.getAttribute("data-group-name");
+    // Confirm delete action
+    confirmDeleteButton.addEventListener("click", () => {
+        const groupName = confirmDeleteButton.getAttribute("data-group-name");
+        confirmDelete(groupName); // Confirm delete action
+    });
 
-        if (e.target.classList.contains("confirm-delete")) {
-            confirmDelete(groupName); // Confirm delete action
-        } else if (e.target.classList.contains("cancel-delete")) {
-            cancelDelete(groupName); // Cancel delete action
-        }
+    // Cancel delete action
+    cancelDeleteButton.addEventListener("click", () => {
+        cancelDelete(); // Hide the confirmation overlay
     });
 });
