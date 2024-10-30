@@ -2,9 +2,15 @@
     "manifest_version": 3,
     "name": "TabIt",
     "version": "2.0",
-    "description": "Save and manage tabs in groups",
+    "description": "A browser extension to save and manage tabs in groups",
+    "icons": {
+        "16": "./assets/icons/tabit-icon.png",
+        "48": "./assets/icons/tabit-icon.png",
+        "128": "./assets/icons/tabit-icon.png"
+    },
     "permissions": ["tabs","storage"],
     "action": {
-        "default_popup": "popup.html"
+        "default_popup": "popup.html",
+        "default_icon": "./assets/icons/tabit-icon.png"
     }
 }

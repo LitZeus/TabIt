@@ -1,6 +1,6 @@
 /* General styling */
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Nunito', sans-serif;
   margin: 0;
   padding: 0;
   display: flex;
@@ -26,6 +26,7 @@ body {
 
 /* Header styling */
 header h1 {
+  font-family: 'Libre Baskerville', serif;
   margin-top: 12px;
   text-align: center;
   font-size: 30px;
