@@ -1,4 +1,4 @@
-import { cancelDelete, confirmDelete, triggerDelete } from "./components/deleteGroup.js"; // Ensure correct import
+import { cancelDelete, confirmDelete, triggerDelete } from "./components/deleteGroup.js";
 import { openGroup, showTabsInGroup } from "./components/groupActions.js";
 import { loadGroups } from "./components/loadGroups.js";
 import { saveAllTabs, saveCurrentTab } from "./components/saveTabs.js";
