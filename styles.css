@@ -7,12 +7,12 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #f2f2f2;
+  background-color: #f2f2f2d3;
 }
 
 .main-container {
   width: 300px;
-  background-color: #ffffff;
+  background-color: #e3f3f8;
   border-radius: 15px; /* Rounded corners for main container */
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
   padding: 20px;
@@ -43,6 +43,7 @@ header h1 {
   margin-top: 15px; /* Space between this section and other content */
   overflow-y: auto; /* Enable vertical scrolling */
   flex-grow: 1; /* Allow the group section to expand */
+  background-color: #feffff;
 }
 
 /* Input and button styling */
@@ -87,8 +88,8 @@ button:hover {
   margin: 10px 0;
   padding: 8px;
   border-radius: 10px;
-  background-color: #fafafa;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #e1fdfbd5;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .group-item span {
