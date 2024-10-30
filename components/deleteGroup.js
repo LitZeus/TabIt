@@ -1,8 +1,6 @@
-let groupToDelete = null;
+import { loadGroups } from "./loadGroups.js";
 
-// Function to set the group to delete and trigger inline confirmation
 export function triggerDelete(groupName) {
-    groupToDelete = groupName;
     const deleteConfirmation = document.getElementById(`confirmDelete-${groupName}`);
     
     if (deleteConfirmation) {
@@ -10,27 +8,23 @@ export function triggerDelete(groupName) {
     }
 }
 
-// Function to confirm deletion of the group
-export function confirmDelete() {
-    if (groupToDelete) {
-        chrome.storage.local.get(["tabGroups"], (result) => {
-            const tabGroups = result.tabGroups || {};
-            delete tabGroups[groupToDelete]; // Delete the selected group
-            chrome.storage.local.set({ tabGroups }, loadGroups); // Reload groups after deletion
-
-            hideInlineConfirmation(groupToDelete); // Hide the inline confirmation
-            groupToDelete = null; // Clear the variable
+// Function to confirm deletion of the group and remove it entirely
+export function confirmDelete(groupName) {
+    chrome.storage.local.get(["tabGroups"], (result) => {
+        const tabGroups = result.tabGroups || {};
+        delete tabGroups[groupName]; // Remove the entire group from storage
+        chrome.storage.local.set({ tabGroups }, () => {
+            loadGroups(); // Reload groups to refresh UI
         });
-    }
+    });
 }
 
-// Function to cancel the delete confirmation and hide inline prompt
-export function cancelDelete() {
-    hideInlineConfirmation(groupToDelete);
-    groupToDelete = null;
+// Function to cancel delete confirmation and hide the inline prompt
+export function cancelDelete(groupName) {
+    hideInlineConfirmation(groupName);
 }
 
-// Helper function to hide inline confirmation
+// Helper function to hide inline confirmation prompt
 function hideInlineConfirmation(groupName) {
     const deleteConfirmation = document.getElementById(`confirmDelete-${groupName}`);
     if (deleteConfirmation) {

@@ -19,10 +19,26 @@ body {
 }
 
 /* Header styling */
-header {
+header h1 {
+  margin: 25px; /* Remove extra margin from h1 */
   text-align: center;
-  font-size: 24px;
+  font-size: 30px;
   font-weight: bold;
+}
+
+.group-section h2{
+  margin-top: 0px; /* Remove extra margin from h1 */
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* Styling for the group-section */
+.group-section {
+  border: 1px solid #ccc; /* Thin border around group section */
+  border-radius: 8px; /* Rounded corners to match main container */
+  padding: 15px; /* Padding for proportional spacing */
+  margin-top: 15px; /* Space between this section and other content */
 }
 
 /* Input and button styling */

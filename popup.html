@@ -14,10 +14,8 @@
 
         <div class="add-group">
             <input type="text" id="groupName" placeholder="Group Name" />
-            <button id="saveTabsButton" title="Add Current Tab">
-                <img src="assets/icons/save-icon.png" alt="Save Icon" class="icon" /> Add Tab to Group
-            </button>
-            <button id="addAllTabsButton" title="Add All Tabs">Add All Tabs to Group</button>
+            <button id="saveTabsButton" title="Add Current Tab">Add Current Tab</button>
+            <button id="addAllTabsButton" title="Add All Tabs">Add All</button>
         </div>
 
         <div class="group-section">
@@ -31,6 +29,15 @@
             <button id="closeTabsPopup">Close</button>
         </div>
     </div>
+
+    <!-- Add delete confirmation template -->
+    <template id="deleteConfirmationTemplate">
+        <div class="delete-confirmation">
+            <p>Are you sure you want to delete this group?</p>
+            <button class="confirm-delete">Yes</button>
+            <button class="cancel-delete">No</button>
+        </div>
+    </template>
 
     <script src="popup.js" type="module"></script>
 </body>
