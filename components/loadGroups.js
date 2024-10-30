@@ -1,3 +1,5 @@
+import { cancelDelete, confirmDelete, triggerDelete } from "./deleteGroup.js";
+
 export function loadGroups() {
     chrome.storage.local.get(["tabGroups"], (result) => {
         const tabGroups = result.tabGroups || {};
