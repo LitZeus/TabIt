@@ -9,9 +9,9 @@ export function loadGroups() {
             groupDiv.className = "group-item";
             groupDiv.innerHTML = `
                 <span>${groupName}</span>
-                <button class="show-tabs" data-group-name="${groupName}">List Tabs</button>
-                <button class="open-group" data-group-name="${groupName}">Open Group</button>
-                <button class="delete-group" data-group-name="${groupName}">Delete Group</button>
+                <button class="show-tabs" data-group-name="${groupName}">List</button>
+                <button class="open-group" data-group-name="${groupName}">Open</button>
+                <button class="delete-group" data-group-name="${groupName}">Delete</button>
             `;
             groupList.appendChild(groupDiv);
         });

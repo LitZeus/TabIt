@@ -42,7 +42,7 @@ input[type="text"] {
 }
 
 button {
-  padding: 8px;
+  padding: 10px;
   font-size: 14px;
   border-radius: 8px; /* Rounded buttons */
   border: none;
@@ -50,10 +50,51 @@ button {
   background-color: #4CAF50;
   cursor: pointer;
   transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 button:hover {
   background-color: #45a049;
+}
+
+/* Group item styling */
+.group-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 0;
+  padding: 8px;
+  border-radius: 10px;
+  background-color: #fafafa;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.group-item span {
+  flex-grow: 1; /* Take remaining space for group name */
+}
+
+.group-item button {
+  padding: 5px 8px;
+  font-size: 12px;
+  border-radius: 5px;
+  margin-left: 5px; /* Space between buttons */
+  background-color: #2196F3;
+  color: white;
+  border: none;
+}
+
+.group-item button.delete-group {
+  background-color: #F44336; /* Red color for delete button */
+}
+
+.group-item button.show-tabs {
+  background-color: #FFA500; /* Orange color for show button */
+}
+
+.group-item button:hover {
+  opacity: 0.9; /* Slight opacity change on hover */
 }
 
 /* Icon styling */
