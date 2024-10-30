@@ -173,7 +173,15 @@ button:hover {
   padding: 20px;
   border-radius: 5px;
   text-align: center;
+  border: 2px solid #ccc; /* Add border */
 }
+
+.button-container {
+  display: flex;
+  justify-content: center; /* Center align buttons */
+  gap: 10px; /* Space between buttons */
+}
+
 
 .hidden {
   display: none;

@@ -5,7 +5,10 @@ let groupToDelete = null;
 // Function to set the group to delete and show the overlay
 export function triggerDelete(groupName) {
     groupToDelete = groupName;
-    const deleteConfirmationOverlay = document.getElementById("deleteConfirmationOverlay");
+    const deleteConfirmationOverlay = document.getElementById("deleteOverlay");
+    const confirmButton = document.querySelector(".confirm-delete");
+    
+    confirmButton.setAttribute("data-group-name", groupName); // Set group name for confirmation
     deleteConfirmationOverlay.classList.remove("hidden"); // Show the overlay
 }
 
@@ -31,6 +34,6 @@ export function cancelDelete() {
 
 // Helper function to hide the overlay
 function hideOverlay() {
-    const deleteConfirmationOverlay = document.getElementById("deleteConfirmationOverlay");
+    const deleteConfirmationOverlay = document.getElementById("deleteOverlay");
     deleteConfirmationOverlay.classList.add("hidden");
 }

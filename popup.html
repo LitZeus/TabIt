@@ -30,12 +30,14 @@
         </div>
     </div>
 
-    <!-- Overlay for delete confirmation -->
-    <div id="deleteConfirmationOverlay" class="overlay hidden">
-        <div class="confirmation-box">
+    <!-- Add delete confirmation overlay -->
+    <div id="deleteOverlay" class="overlay hidden">
+        <div class="delete-confirmation">
             <p>Are you sure you want to delete this group?</p>
-            <button id="confirmDeleteButton">Yes</button>
-            <button id="cancelDeleteButton">No</button>
+            <div class="button-container">
+                <button class="confirm-delete" data-group-name="">Yes</button>
+                <button class="cancel-delete">No</button>
+            </div>
         </div>
     </div>
 

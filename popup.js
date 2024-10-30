@@ -7,8 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const saveTabsButton = document.getElementById("saveTabsButton");
     const addAllTabsButton = document.getElementById("addAllTabsButton");
     const closeTabsPopupButton = document.getElementById("closeTabsPopup");
-    const confirmDeleteButton = document.getElementById("confirmDeleteButton");
-    const cancelDeleteButton = document.getElementById("cancelDeleteButton");
 
     // Load saved groups when the popup is opened
     loadGroups();
@@ -38,13 +36,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Confirm delete action
-    confirmDeleteButton.addEventListener("click", () => {
-        const groupName = confirmDeleteButton.getAttribute("data-group-name");
+    document.querySelector(".confirm-delete").addEventListener("click", () => {
+        const groupName = document.querySelector(".confirm-delete").getAttribute("data-group-name");
         confirmDelete(groupName); // Confirm delete action
     });
 
     // Cancel delete action
-    cancelDeleteButton.addEventListener("click", () => {
+    document.querySelector(".cancel-delete").addEventListener("click", () => {
         cancelDelete(); // Hide the confirmation overlay
     });
 });
