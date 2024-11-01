@@ -1,56 +1,54 @@
-import { cancelDelete, confirmDelete, triggerDelete } from "./deleteGroup.js";
+import { cancelDelete, confirmDelete, triggerDelete } from "./components/deleteGroup.js";
+import { openGroup, showTabsInGroup } from "./components/groupActions.js";
+import { loadGroups } from "./components/loadGroups.js";
+import { saveAllTabs, saveCurrentTab } from "./components/saveTabs.js";
 
-export function loadGroups() {
-    chrome.storage.local.get(["tabGroups"], (result) => {
-        const tabGroups = result.tabGroups || {};
-        const groupList = document.getElementById("groupList");
-        groupList.innerHTML = ""; // Clear the list before populating
+document.addEventListener("DOMContentLoaded", () => {
+    const saveTabsButton = document.getElementById("saveTabsButton");
+    const addAllTabsButton = document.getElementById("addAllTabsButton");
+    const closeTabsPopupButton = document.getElementById("closeTabsPopup");
+    const clearAllButton = document.getElementById("clearAllButton"); // New "Clear All" button
 
-        Object.keys(tabGroups).forEach(groupName => {
-            const groupDiv = document.createElement("div");
-            groupDiv.className = "group-item";
-            groupDiv.innerHTML = `
-                <span>${groupName}</span>
-                <button class="show-tabs" data-group-name="${groupName}">List</button>
-                <button class="open-group" data-group-name="${groupName}">Open</button>
-                <button class="delete-group" data-group-name="${groupName}">Delete</button>
-                <div id="confirmDelete-${groupName}" class="hidden">
-                    Are you sure you want to delete this group?
-                    <button class="confirm-delete" data-group-name="${groupName}">Yes</button>
-                    <button class="cancel-delete" data-group-name="${groupName}">No</button>
-                </div>
-            `;
-            groupList.appendChild(groupDiv);
-        });
+    // Load saved groups when the popup is opened
+    loadGroups();
 
-        // Add event listeners for delete confirmation buttons
-        addDeleteEventListeners();
-    });
-}
+    // Event listener for saving the current tab to the group
+    saveTabsButton.addEventListener("click", saveCurrentTab);
 
-// Function to add event listeners for delete actions
-function addDeleteEventListeners() {
-    const deleteButtons = document.querySelectorAll('.delete-group');
-    deleteButtons.forEach(button => {
-        button.addEventListener('click', (e) => {
-            const groupName = e.target.getAttribute('data-group-name');
-            triggerDelete(groupName);
-        });
+    // Event listener for saving all tabs in the current window to the group
+    addAllTabsButton.addEventListener("click", saveAllTabs);
+
+    // Event listener for closing the tabs popup
+    closeTabsPopupButton.addEventListener("click", () => {
+        document.getElementById("tabsPopup").classList.add("hidden");
     });
 
-    const confirmDeleteButtons = document.querySelectorAll('.confirm-delete');
-    confirmDeleteButtons.forEach(button => {
-        button.addEventListener('click', (e) => {
-            const groupName = e.target.getAttribute('data-group-name');
-            confirmDelete(groupName);
-        });
+    // Event listener for clearing all groups
+    clearAllButton.addEventListener("click", (e) => {
+        e.preventDefault();
+        triggerDelete(null, true); // Trigger delete confirmation for all groups
     });
 
-    const cancelDeleteButtons = document.querySelectorAll('.cancel-delete');
-    cancelDeleteButtons.forEach(button => {
-        button.addEventListener('click', (e) => {
-            const groupName = e.target.getAttribute('data-group-name');
-            cancelDelete(groupName);
-        });
+    // Event delegation for handling group-specific actions
+    document.getElementById("groupList").addEventListener("click", (e) => {
+        const groupName = e.target.getAttribute("data-group-name");
+
+        if (e.target.classList.contains("open-group")) {
+            openGroup(groupName);
+        } else if (e.target.classList.contains("delete-group")) {
+            triggerDelete(groupName); // Trigger delete action
+        } else if (e.target.classList.contains("show-tabs")) {
+            showTabsInGroup(groupName);
+        }
     });
-}
+
+    // Confirm delete action
+    document.querySelector(".confirm-delete").addEventListener("click", () => {
+        confirmDelete(); // Confirm delete action
+    });
+
+    // Cancel delete action
+    document.querySelector(".cancel-delete").addEventListener("click", () => {
+        cancelDelete(); // Hide the confirmation overlay
+    });
+});

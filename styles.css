@@ -194,3 +194,15 @@ button:hover {
 .hidden {
   display: none;
 }
+
+.clear-all-link {
+  display: block;
+  font-size: 14px;
+  color: #007bff;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-top: -10px; /* Adjusts position relative to heading */
+}
+.clear-all-link:hover {
+  color: #0056b3;
+}
