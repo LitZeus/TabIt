@@ -7,22 +7,31 @@ export function triggerDelete(groupName) {
     const deleteConfirmationOverlay = document.getElementById("deleteOverlay");
     const confirmButton = document.querySelector(".confirm-delete");
 
-    confirmButton.setAttribute("data-group-name", groupName);
+    // Update confirmation overlay for either single or all groups
+    confirmButton.setAttribute("data-group-name", groupName || "all");
+    document.querySelector(".delete-confirmation p").textContent =
+        groupName ? `Are you sure you want to delete the group "${groupName}"?` : "Are you sure you want to delete all groups?";
+
     deleteConfirmationOverlay.classList.remove("hidden");
 }
 
 export function confirmDelete() {
-    if (groupToDelete) {
-        chrome.storage.local.get(["tabGroups"], (result) => {
-            const tabGroups = result.tabGroups || {};
-            delete tabGroups[groupToDelete];
-            chrome.storage.local.set({ tabGroups }, () => {
-                loadGroups();
-                hideOverlay();
-                groupToDelete = null;
-            });
+    chrome.storage.local.get(["tabGroups"], (result) => {
+        const tabGroups = result.tabGroups || {};
+
+        if (groupToDelete) {
+            delete tabGroups[groupToDelete]; // Delete the selected group
+        } else {
+            // Clear all groups if `groupToDelete` is `null`
+            Object.keys(tabGroups).forEach(group => delete tabGroups[group]);
+        }
+
+        chrome.storage.local.set({ tabGroups }, () => {
+            loadGroups();
+            hideOverlay();
+            groupToDelete = null;
         });
-    }
+    });
 }
 
 export function cancelDelete() {
@@ -30,6 +39,5 @@ export function cancelDelete() {
 }
 
 function hideOverlay() {
-    const deleteConfirmationOverlay = document.getElementById("deleteOverlay");
-    deleteConfirmationOverlay.classList.add("hidden");
+    document.getElementById("deleteOverlay").classList.add("hidden");
 }

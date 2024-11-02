@@ -7,7 +7,7 @@ export function loadGroups() {
         groupList.innerHTML = "";
 
         if (Object.keys(tabGroups).length === 0) {
-            groupList.innerHTML = "<p>No groups are stored</p>";
+            groupList.innerHTML = "<p>• No groups are stored</p>";
         } else {
             Object.keys(tabGroups).forEach(groupName => {
                 const groupDiv = document.createElement("div");
@@ -36,7 +36,7 @@ function addDeleteEventListeners() {
 
     const confirmDeleteButtons = document.querySelectorAll('.confirm-delete');
     confirmDeleteButtons.forEach(button => {
-        button.addEventListener('click', (e) => {
+        button.addEventListener('click', () => {
             confirmDelete();
         });
     });
