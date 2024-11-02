@@ -202,7 +202,7 @@ button:hover {
   color: #007bff;
   text-decoration: underline;
   cursor: pointer;
-  margin-top: -10px; /* Adjusts position relative to heading */
+  margin-top: -10px;
 }
 .clear-all-link:hover {
   color: #0056b3;

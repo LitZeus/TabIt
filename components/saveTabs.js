@@ -32,7 +32,6 @@ export function saveAllTabs() {
             tabGroups[groupName] = tabInfo;
 
             chrome.storage.local.set({ tabGroups }, () => {
-                console.log(`All tabs saved to group: ${groupName}`);
                 loadGroups();
             });
         });

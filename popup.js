@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const saveTabsButton = document.getElementById("saveTabsButton");
     const addAllTabsButton = document.getElementById("addAllTabsButton");
     const closeTabsPopupButton = document.getElementById("closeTabsPopup");
-    const clearAllButton = document.getElementById("clearAllButton"); // Reference to the clear all button
+    const clearAllButton = document.getElementById("clearAllButton");
 
     // Load saved groups when the popup is opened
     loadGroups();
@@ -43,6 +43,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // Clear all groups when the "Clear All" button is clicked
     clearAllButton.addEventListener("click", (e) => {
         e.preventDefault();
-        triggerDelete(null); // Passing null to indicate all groups
+        triggerDelete(null);
     });
 });

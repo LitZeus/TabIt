@@ -4,10 +4,12 @@ export function loadGroups() {
     chrome.storage.local.get(["tabGroups"], (result) => {
         const tabGroups = result.tabGroups || {};
         const groupList = document.getElementById("groupList");
+        const clearAllButton = document.getElementById("clearAllButton"); // Get the Clear All button element
         groupList.innerHTML = "";
 
         if (Object.keys(tabGroups).length === 0) {
-            groupList.innerHTML = "<p>• No groups are stored</p>";
+            groupList.innerHTML = "<p>No groups are stored</p>";
+            clearAllButton.style.display = "none"; // Hide Clear All button if no groups
         } else {
             Object.keys(tabGroups).forEach(groupName => {
                 const groupDiv = document.createElement("div");
@@ -20,6 +22,7 @@ export function loadGroups() {
                 `;
                 groupList.appendChild(groupDiv);
             });
+            clearAllButton.style.display = "block"; // Show Clear All button if groups exist
         }
         addDeleteEventListeners();
     });
