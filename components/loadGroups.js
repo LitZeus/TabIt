@@ -1,54 +1,50 @@
-import { cancelDelete, confirmDelete, triggerDelete } from "./components/deleteGroup.js";
-import { openGroup, showTabsInGroup } from "./components/groupActions.js";
-import { loadGroups } from "./components/loadGroups.js";
-import { saveAllTabs, saveCurrentTab } from "./components/saveTabs.js";
+import { cancelDelete, confirmDelete, triggerDelete } from "./deleteGroup.js";
 
-document.addEventListener("DOMContentLoaded", () => {
-    const saveTabsButton = document.getElementById("saveTabsButton");
-    const addAllTabsButton = document.getElementById("addAllTabsButton");
-    const closeTabsPopupButton = document.getElementById("closeTabsPopup");
-    const clearAllButton = document.getElementById("clearAllButton"); // New "Clear All" button
+export function loadGroups() {
+    chrome.storage.local.get(["tabGroups"], (result) => {
+        const tabGroups = result.tabGroups || {};
+        const groupList = document.getElementById("groupList");
+        groupList.innerHTML = "";
 
-    // Load saved groups when the popup is opened
-    loadGroups();
-
-    // Event listener for saving the current tab to the group
-    saveTabsButton.addEventListener("click", saveCurrentTab);
-
-    // Event listener for saving all tabs in the current window to the group
-    addAllTabsButton.addEventListener("click", saveAllTabs);
-
-    // Event listener for closing the tabs popup
-    closeTabsPopupButton.addEventListener("click", () => {
-        document.getElementById("tabsPopup").classList.add("hidden");
-    });
-
-    // Event listener for clearing all groups
-    clearAllButton.addEventListener("click", (e) => {
-        e.preventDefault();
-        triggerDelete(null, true); // Trigger delete confirmation for all groups
-    });
-
-    // Event delegation for handling group-specific actions
-    document.getElementById("groupList").addEventListener("click", (e) => {
-        const groupName = e.target.getAttribute("data-group-name");
-
-        if (e.target.classList.contains("open-group")) {
-            openGroup(groupName);
-        } else if (e.target.classList.contains("delete-group")) {
-            triggerDelete(groupName); // Trigger delete action
-        } else if (e.target.classList.contains("show-tabs")) {
-            showTabsInGroup(groupName);
+        if (Object.keys(tabGroups).length === 0) {
+            groupList.innerHTML = "<p>No groups are stored</p>";
+        } else {
+            Object.keys(tabGroups).forEach(groupName => {
+                const groupDiv = document.createElement("div");
+                groupDiv.className = "group-item";
+                groupDiv.innerHTML = `
+                    <span>${groupName}</span>
+                    <button class="show-tabs" data-group-name="${groupName}">List</button>
+                    <button class="open-group" data-group-name="${groupName}">Open</button>
+                    <button class="delete-group" data-group-name="${groupName}">Delete</button>
+                `;
+                groupList.appendChild(groupDiv);
+            });
         }
+        addDeleteEventListeners();
+    });
+}
+
+function addDeleteEventListeners() {
+    const deleteButtons = document.querySelectorAll('.delete-group');
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            const groupName = e.target.getAttribute('data-group-name');
+            triggerDelete(groupName);
+        });
     });
 
-    // Confirm delete action
-    document.querySelector(".confirm-delete").addEventListener("click", () => {
-        confirmDelete(); // Confirm delete action
+    const confirmDeleteButtons = document.querySelectorAll('.confirm-delete');
+    confirmDeleteButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            confirmDelete();
+        });
     });
 
-    // Cancel delete action
-    document.querySelector(".cancel-delete").addEventListener("click", () => {
-        cancelDelete(); // Hide the confirmation overlay
+    const cancelDeleteButtons = document.querySelectorAll('.cancel-delete');
+    cancelDeleteButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            cancelDelete();
+        });
     });
-});
+}
